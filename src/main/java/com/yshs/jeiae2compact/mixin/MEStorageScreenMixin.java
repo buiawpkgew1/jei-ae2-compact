@@ -11,7 +11,9 @@ import appeng.menu.me.common.MEStorageMenu;
 import com.yshs.jeiae2compact.jei.JEIAE2CompactPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.locale.Language;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -68,6 +70,31 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                         long serial = entry.getSerial();
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
                     });
+        }
+
+        // 检查是否是 Shift + 右键点击
+        if (Screen.hasShiftDown() && button == 1) { // button 1 is right click
+            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
+            if (itemStack == null) {
+                return;
+            }
+
+            AEItemKey targetKey = AEItemKey.of(itemStack);
+            GridInventoryEntry entry = repo.getAllEntries().stream()
+                    .filter(e -> e.getWhat() != null && e.getWhat().equals(targetKey))
+                    .findFirst()
+                    .orElse(null);
+
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null) {
+                if (entry != null) {
+                    long storedAmount = entry.getStored();
+                    mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_count", itemStack.getHoverName(), storedAmount));
+                } else {
+                    mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_not_found", itemStack.getHoverName()));
+                }
+            }
         }
     }
 }
