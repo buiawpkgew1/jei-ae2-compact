@@ -35,24 +35,24 @@ public class JEIAE2CompactPlugin implements IModPlugin {
         return jeiRuntime;
     }
 
+    import net.minecraft.server.level.ServerPlayer;
+    import net.minecraft.world.item.crafting.Recipe;
+    import net.minecraftforge.event.entity.player.PlayerEvent;
+    import net.minecraftforge.eventbus.api.SubscribeEvent;
+
     @SubscribeEvent
     public void onCraftingComplete(PlayerEvent.ItemCraftedEvent event) {
-        if(jeiRuntime != null && event.player instanceof ServerPlayer) {
-            ServerPlayer player = (ServerPlayer) event.player;
-            IRecipeManager recipeManager = jeiRuntime.getRecipeManager();
+        if(jeiRuntime != null && event.getPlayer() instanceof ServerPlayer) {
+            ServerPlayer player = (ServerPlayer) event.getPlayer();
+            Recipe<?> recipe = event.getRecipe();
             
-            // 获取当前合成配方
-            Optional<IRecipe<?>> recipe = player.containerMenu.getRecipeBook().getRecipeFor(event.craftMatrix, player.level);
-            
-            if(recipe.isPresent()) {
-                // 自动填充剩余材料
-                fillRemainingIngredients(player, recipe.get());
+            if(recipe != null) {
+                fillRemainingIngredients(player, recipe);
             }
         }
     }
 
-    private void fillRemainingIngredients(ServerPlayer player, IRecipe<?> recipe) {
-        // 实现自动填充逻辑
-        // ...
+    private void fillRemainingIngredients(ServerPlayer player, Recipe<?> recipe) {
+        // Implementation of auto-fill logic
     }
 }
