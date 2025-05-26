@@ -21,7 +21,13 @@ public class ChannelUsageGui implements IRecipeCategory<Object> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Object recipe, IFocusGroup focuses) {
-        IPathingService pathing = pathing
+        IPathingService pathing = pathing;
+        IEnergyService energy = energy;
+
+        // 检查路径服务和能量服务是否为空
+        if (pathing == null || energy == null) {
+            return;
+        }
         
         // 显示频道使用热力图
         Map<Direction, Integer> channelUsage = pathing.getChannelUsage();

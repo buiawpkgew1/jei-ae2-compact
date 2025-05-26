@@ -22,8 +22,11 @@ public class P2PConfigGui implements IRecipeCategory<Object> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Object recipe, IFocusGroup focuses) {
         // 实现P2P配置界面
-        IPartHost partHost = partHost
+        IPartHost partHost = partHost;
+        IPathingService pathing = pathing;
+
         // 显示P2P通道列表
+        
         // 添加配置按钮
     }
 }

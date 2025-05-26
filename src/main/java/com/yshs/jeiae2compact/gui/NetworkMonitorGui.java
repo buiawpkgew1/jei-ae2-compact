@@ -24,11 +24,8 @@ public class NetworkMonitorGui implements IRecipeCategory<Object> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Object recipe, IFocusGroup focuses) {
         // 实现网络状态显示逻辑
-        IStorageService storage = storage
-        IEnergyService energy = energy
-        
-        // 显示存储使用率
-        // 显示能源状态
+        IStorageService storage = storage;
+        IEnergyService energy = energy;
     }
 }
 
