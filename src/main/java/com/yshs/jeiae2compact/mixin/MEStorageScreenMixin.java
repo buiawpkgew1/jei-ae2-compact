@@ -39,35 +39,61 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
     }
 
     /**
-     * 注入到mouseClicked方法，处理中键点击物品
+     * 检查并补充缺少的材料
      */
+    private void checkAndRequestMissingMaterials(ItemStack itemStack) {
+        // 获取JEI运行时
+        IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+        // 获取当前查看的配方
+        mezz.jei.api.recipe.IFocus<?> focus = jeiRuntime.getRecipesGui().getFocus();
+        
+        if (focus != null && focus.getMode() == mezz.jei.api.recipe.RecipeIngredientRole.INPUT) {
+            // 获取配方输入物品
+            Object ingredient = focus.getTypedValue().getIngredient();
+            if (ingredient instanceof ItemStack) {
+                // 检查网络中的物品数量
+                AEItemKey key = AEItemKey.of((ItemStack) ingredient);
+                long available = menu.getClientRepo().getByKey(key).getStoredAmount();
+                long required = itemStack.getCount();
+                
+                // 如果数量不足，触发自动合成
+                if (available < required) {
+                    repo.getAllEntries().stream()
+                        .filter(entry -> entry.getWhat().equals(key))
+                        .filter(GridInventoryEntry::isCraftable)
+                        .findFirst()
+                        .ifPresent(entry -> {
+                            long missing = required - available;
+                            // 设置合成数量为缺少的数量
+                            menu.setAutoCraftAmount(missing);
+                            // 触发自动合成
+                            menu.handleInteraction(entry.getSerial(), InventoryAction.AUTO_CRAFT);
+                        });
+                }
+            }
+        }
+    }
+
     @Inject(method = "mouseClicked", at = @At("RETURN"))
     private void onMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        // 检查是否是中键点击
         if (Minecraft.getInstance().options.keyPickItem.matchesMouse(button)) {
-
-            // 获取JEI的运行时
             IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
-            // 得到书签覆盖层下面的物品
             ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
-            if (itemStack == null) {
-                return;
-            }
-            // 得到目标物品的AEKey
-            AEItemKey targetKey = AEItemKey.of(itemStack);
-            // 遍历AE终端中的所有条目
-            repo.getAllEntries().stream()
-                    // 过滤掉无法自动合成的条目
+            if (itemStack != null) {
+                // 检查并补充缺少的材料
+                checkAndRequestMissingMaterials(itemStack);
+                
+                // 原有自动合成逻辑
+                AEItemKey targetKey = AEItemKey.of(itemStack);
+                repo.getAllEntries().stream()
                     .filter(GridInventoryEntry::isCraftable)
-                    // 过滤掉空值
                     .filter(entry -> entry.getWhat() != null)
-                    // 找到目标条目
                     .filter(entry -> entry.getWhat().equals(targetKey))
-                    // 打开自动合成菜单
                     .forEach(entry -> {
                         long serial = entry.getSerial();
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
                     });
+            }
         }
     }
 }
