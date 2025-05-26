@@ -11,9 +11,7 @@ import appeng.menu.me.common.MEStorageMenu;
 import com.yshs.jeiae2compact.jei.JEIAE2CompactPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.locale.Language;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -71,30 +69,34 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
                     });
         }
+    }
 
-        // 检查是否是 Shift + 右键点击
-        if (Screen.hasShiftDown() && button == 1) { // button 1 is right click
+    /**
+     * 注入到mouseClicked方法，处理右键点击物品以请求物品
+     */
+    @Inject(method = "mouseClicked", at = @At("RETURN"), cancellable = true)
+    private void onMouseClickedRequestItem(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+        // 检查是否是右键点击
+        if (button == 1) { // 1 corresponds to right mouse button
             IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
             ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
-            if (itemStack == null) {
+            if (itemStack == null || itemStack.isEmpty()) {
                 return;
             }
 
             AEItemKey targetKey = AEItemKey.of(itemStack);
-            GridInventoryEntry entry = repo.getAllEntries().stream()
-                    .filter(e -> e.getWhat() != null && e.getWhat().equals(targetKey))
-                    .findFirst()
-                    .orElse(null);
 
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.player != null) {
-                if (entry != null) {
-                    long storedAmount = entry.getAmount();
-                    mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_count", itemStack.getHoverName(), storedAmount));
-                } else {
-                    mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_not_found", itemStack.getHoverName()));
-                }
-            }
+            // Find the entry in the AE system
+            repo.getAllEntries().stream()
+                .filter(entry -> entry.getWhat() != null && entry.getWhat().equals(targetKey))
+                .findFirst()
+                .ifPresent(entry -> {
+                    // Request one item from the AE system
+                    // This is a simplified request, a full implementation might need a quantity input
+                    menu.handleInteraction(entry.getSerial(), InventoryAction.REQUEST_CRAFTING_MODE);
+                    // Cancel the original mouse click event if we handled it
+                    cir.setReturnValue(true);
+                });
         }
     }
 }
