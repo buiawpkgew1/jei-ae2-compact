@@ -6,6 +6,10 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
  * 插件注册
@@ -35,10 +39,7 @@ public class JEIAE2CompactPlugin implements IModPlugin {
         return jeiRuntime;
     }
 
-    import net.minecraft.server.level.ServerPlayer;
-    import net.minecraft.world.item.crafting.Recipe;
-    import net.minecraftforge.event.entity.player.PlayerEvent;
-    import net.minecraftforge.eventbus.api.SubscribeEvent;
+    
 
     @SubscribeEvent
     public void onCraftingComplete(PlayerEvent.ItemCraftedEvent event) {
