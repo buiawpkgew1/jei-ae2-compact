@@ -40,7 +40,17 @@ public class NetworkStatusCategory implements IRecipeCategory<NetworkStatusRecip
     }
     
     @Override
+    // 实现完整的配方布局
     public void setRecipe(IRecipeLayoutBuilder builder, NetworkStatusRecipe recipe, IFocusGroup focuses) {
-        // 在这里设置配方布局
+        builder.addSlot(RecipeIngredientRole.INPUT, 10, 10)
+               .addTooltipCallback((recipeSlotView, tooltip) -> {
+                   tooltip.add(Component.translatable("jeiae2compact.tooltip.network_status"));
+                   tooltip.addAll(recipe.getTooltips());
+               });
+        
+        // 添加网络状态显示区域
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 10)
+               .setCustomRenderer(NetworkStatusRenderer.class)
+               .addIngredient(NetworkStatusIngredient.TYPE, recipe.getStatus());
     }
 }

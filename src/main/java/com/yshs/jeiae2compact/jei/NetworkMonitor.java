@@ -20,3 +20,2011 @@ public class NetworkMonitor {
     
     // 添加其他网络监控方法
 }
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {
+    IGridNode node = AE2Helper.getPlayerGridNode(player);
+    if (node == null || !node.isActive()) {
+        return NetworkStatus.EMPTY;
+    }
+    
+    IGrid grid = node.getGrid();
+    IEnergyService energy = grid.getService(IEnergyService.class);
+    IStorageService storage = grid.getService(IStorageService.class);
+    
+    return new NetworkStatus(
+        storage.getInventory().getStoredItems().size(),
+        energy.getStoredPower(),
+        energy.getMaxStoredPower(),
+        grid.getNodes().size()
+    );
+}
+}
+
+// 添加获取玩家所在网格节点的完整实现
+public static IGridNode getPlayerGridNode(Player player) {
+    Level level = player.level();
+    BlockPos pos = player.blockPosition();
+    IGridNode node = GridHelper.getNode(level, pos);
+    return node != null ? node : GridHelper.getNode(level, pos.above());
+}
+
+public NetworkStatus getNetworkStatus(Player player) {

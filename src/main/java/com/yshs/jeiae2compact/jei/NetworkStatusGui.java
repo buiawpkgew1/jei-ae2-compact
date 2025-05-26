@@ -27,11 +27,13 @@ public class NetworkStatusGui extends GuiComponent implements IDrawable {
     
     @Override
     public void draw(PoseStack poseStack, int xOffset, int yOffset) {
-        // 绘制网络状态UI元素
-        drawString(poseStack, Minecraft.getInstance().font, 
-            Component.literal("AE2 Network Status"), 
-            xOffset + 5, yOffset + 5, 0xFFFFFF);
+        // 绘制背景
+        this.blit(poseStack, xOffset, yOffset, 0, 0, width, height);
         
-        // 添加其他网络状态信息的绘制
+        // 绘制网络状态信息
+        font.draw(poseStack, "AE2网络状态", xOffset + 10, yOffset + 10, 0x404040);
+        font.draw(poseStack, "物品数量: " + status.getItemCount(), xOffset + 10, yOffset + 25, 0x404040);
+        font.draw(poseStack, "能量: " + status.getEnergy() + "/" + status.getMaxEnergy(), xOffset + 10, yOffset + 40, 0x404040);
+        font.draw(poseStack, "节点数量: " + status.getNodeCount(), xOffset + 10, yOffset + 55, 0x404040);
     }
 }
