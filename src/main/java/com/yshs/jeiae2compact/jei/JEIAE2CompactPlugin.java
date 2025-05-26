@@ -42,6 +42,6 @@ public class JEIAE2CompactPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new ChannelUsageGui());
+        registration.addRecipeCategories(new P2PConfigGui());
     }
 }
