@@ -34,4 +34,25 @@ public class JEIAE2CompactPlugin implements IModPlugin {
     public static IJeiRuntime getJeiRuntime() {
         return jeiRuntime;
     }
+
+    @SubscribeEvent
+    public void onCraftingComplete(PlayerEvent.ItemCraftedEvent event) {
+        if(jeiRuntime != null && event.player instanceof ServerPlayer) {
+            ServerPlayer player = (ServerPlayer) event.player;
+            IRecipeManager recipeManager = jeiRuntime.getRecipeManager();
+            
+            // 获取当前合成配方
+            Optional<IRecipe<?>> recipe = player.containerMenu.getRecipeBook().getRecipeFor(event.craftMatrix, player.level);
+            
+            if(recipe.isPresent()) {
+                // 自动填充剩余材料
+                fillRemainingIngredients(player, recipe.get());
+            }
+        }
+    }
+
+    private void fillRemainingIngredients(ServerPlayer player, IRecipe<?> recipe) {
+        // 实现自动填充逻辑
+        // ...
+    }
 }

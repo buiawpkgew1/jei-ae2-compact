@@ -63,12 +63,10 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     .filter(entry -> entry.getWhat() != null)
                     // 找到目标条目
                     .filter(entry -> entry.getWhat().equals(targetKey))
-                    // 打开自动合成菜单并自动填充到合成栏
+                    // 打开自动合成菜单
                     .forEach(entry -> {
                         long serial = entry.getSerial();
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
-                        // Use SHIFT_CLICK instead of FILL_GRID
-                        menu.handleInteraction(serial, InventoryAction.SHIFT_CLICK);
                     });
         }
     }
