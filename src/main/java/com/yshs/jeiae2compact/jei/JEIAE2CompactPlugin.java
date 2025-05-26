@@ -21,17 +21,9 @@ public class JEIAE2CompactPlugin implements IModPlugin {
     }
 
     @Override
-public void onRuntimeAvailable(@NotNull IJeiRuntime runtime) {
-    jeiRuntime = runtime;
-    
-    // 注册网络状态分类
-    runtime.getRecipeManager().addRecipes(
-        RecipeTypes.create(JEIAE2Compact.MODID, "network_status", NetworkStatusRecipe.class),
-        Collections.singletonList(new NetworkStatusRecipe(null)) // 临时空配方
-    );
-    
-    runtime.getRecipeManager().addRecipeCategory(new NetworkStatusCategory(runtime.getGuiHelper()));
-}
+    public void onRuntimeAvailable(@NotNull IJeiRuntime runtime) {
+        jeiRuntime = runtime;
+    }
 
     @Override
     public void onRuntimeUnavailable() {
