@@ -70,33 +70,4 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     });
         }
     }
-
-    /**
-     * 注入到mouseClicked方法，处理右键点击物品以请求物品
-     */
-    @Inject(method = "mouseClicked", at = @At("RETURN"), cancellable = true)
-    private void onMouseClickedRequestItem(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        // 检查是否是 Shift + 右键点击
-        if (button == 1 && hasShiftDown()) { // 1 corresponds to right mouse button
-            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
-            ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
-            if (itemStack == null || itemStack.isEmpty()) {
-                return;
-            }
-
-            AEItemKey targetKey = AEItemKey.of(itemStack);
-
-            // Find the entry in the AE system
-            repo.getAllEntries().stream()
-                .filter(entry -> entry.getWhat() != null && entry.getWhat().equals(targetKey))
-                .findFirst()
-                .ifPresent(entry -> {
-                    // Request one item from the AE system
-                    // This is a simplified request, a full implementation might need a quantity input
-                    menu.handleInteraction(entry.getSerial(), InventoryAction.REQUEST_CRAFTING_MODE);
-                    // Cancel the original mouse click event if we handled it
-                    cir.setReturnValue(true);
-                });
-        }
-    }
 }
