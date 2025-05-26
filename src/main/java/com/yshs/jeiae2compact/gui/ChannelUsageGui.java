@@ -21,7 +21,7 @@ public class ChannelUsageGui implements IRecipeCategory<Object> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, Object recipe, IFocusGroup focuses) {
-        IPathingService pathing = ...;
+        IPathingService pathing = pathing
         
         // 显示频道使用热力图
         Map<Direction, Integer> channelUsage = pathing.getChannelUsage();
