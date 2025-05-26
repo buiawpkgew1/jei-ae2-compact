@@ -67,8 +67,8 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     .forEach(entry -> {
                         long serial = entry.getSerial();
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
-                        // 自动填充到合成栏
-                        menu.handleInteraction(serial, InventoryAction.FILL_GRID);
+                        // Use SHIFT_CLICK instead of FILL_GRID
+                        menu.handleInteraction(serial, InventoryAction.SHIFT_CLICK);
                     });
         }
     }
