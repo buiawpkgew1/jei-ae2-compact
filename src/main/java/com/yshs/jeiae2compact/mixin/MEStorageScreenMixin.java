@@ -52,7 +52,7 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
             
             // 检查材料是否足够
             AEItemKey targetKey = AEItemKey.of(itemStack);
-            long missingAmount = itemStack.getCount() - menu.getClientRepo().getStack(targetKey)
+            long missingAmount = itemStack.getCount() - menu.getClientRepo().get(targetKey)
                     .map(GridInventoryEntry::getStoredAmount)
                     .orElse(0L);
                     
@@ -64,7 +64,7 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     .findFirst()
                     .ifPresent(stack -> {
                         // 请求补充缺少的数量
-                        menu.sendClientAction("fill_item", (int)missingAmount);
+                        menu.sendClientAction("fill_item", stack);
                         Minecraft.getInstance().player.displayClientMessage(
                             Component.literal("自动请求补充 " + missingAmount + " 个 " + itemStack.getDisplayName().getString()), 
                             true);
