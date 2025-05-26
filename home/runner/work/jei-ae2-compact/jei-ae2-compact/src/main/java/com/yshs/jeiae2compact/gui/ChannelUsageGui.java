@@ -1,6 +1,7 @@
-// Add proper field declaration
-private final IPathingService pathing;
+public class ChannelUsageGui {
+    private final IPathingService pathing;
 
-public ChannelUsageGui(IPathingService pathing) {
-    this.pathing = pathing;
+    public ChannelUsageGui(IPathingService pathing) {
+        this.pathing = pathing;
+    }
 }
