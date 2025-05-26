@@ -17,6 +17,5 @@ public class JEIAE2Compact {
     public JEIAE2Compact() {
         // 注册到MinecraftForge事件总线，确保客户端事件能够被正确处理
         MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new JEIAE2CompactPlugin());
     }
 }
