@@ -69,5 +69,41 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
                     });
         }
+        // 新增：Shift+左键将物品全部移动到背包
+        if (button == 0 && Minecraft.getInstance().options.keyShift.isDown()) { // 0为左键
+            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            if (jeiRuntime != null) {
+                ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
+                if (itemStack != null) {
+                    AEItemKey targetKey = AEItemKey.of(itemStack);
+                    repo.getAllEntries().stream()
+                            .filter(entry -> entry.getWhat() != null)
+                            .filter(entry -> entry.getWhat().equals(targetKey))
+                            .findFirst()
+                            .ifPresent(entry -> {
+                                long serial = entry.getSerial();
+                                menu.handleInteraction(serial, InventoryAction.MOVE_REGION);
+                            });
+                }
+            }
+        }
+        // 新增：Alt+左键批量合成所有可合成物品
+        if (button == 0 && Minecraft.getInstance().options.keyAlt.isDown()) {
+            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            if (jeiRuntime != null) {
+                ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
+                if (itemStack != null) {
+                    AEItemKey targetKey = AEItemKey.of(itemStack);
+                    repo.getAllEntries().stream()
+                            .filter(GridInventoryEntry::isCraftable)
+                            .filter(entry -> entry.getWhat() != null)
+                            .filter(entry -> entry.getWhat().equals(targetKey))
+                            .forEach(entry -> {
+                                long serial = entry.getSerial();
+                                menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
+                            });
+                }
+            }
+        }
     }
 }
