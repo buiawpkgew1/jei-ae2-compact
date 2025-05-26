@@ -89,7 +89,7 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
             Minecraft mc = Minecraft.getInstance();
             if (mc.player != null) {
                 if (entry != null) {
-                    long storedAmount = entry.getStored();
+                    long storedAmount = entry.getAmount();
                     mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_count", itemStack.getHoverName(), storedAmount));
                 } else {
                     mc.player.sendSystemMessage(Component.translatable("jeiae2compact.message.item_not_found", itemStack.getHoverName()));
