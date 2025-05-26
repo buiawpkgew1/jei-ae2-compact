@@ -34,4 +34,9 @@ public class JEIAE2CompactPlugin implements IModPlugin {
     public static IJeiRuntime getJeiRuntime() {
         return jeiRuntime;
     }
+
+    @Override
+    public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
+        registration.addRecipeTransferHandler(new RecipeTransferHandler());
+    }
 }

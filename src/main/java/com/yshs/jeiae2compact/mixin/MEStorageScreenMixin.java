@@ -70,4 +70,13 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     });
         }
     }
+
+    @Inject(method = "mouseClicked", at = @At("RETURN"))
+    private void onRightClick(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+        if (button == 1) { // 右键点击
+            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            // 获取JEI当前显示的配方
+            // 调用RecipeTransferHandler处理配方导入
+        }
+    }
 }
