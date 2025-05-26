@@ -17,7 +17,7 @@ public class JEIAE2CompactPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return ResourceLocation.fromNamespaceAndPath(JEIAE2Compact.MODID, "network_status");
+        return ResourceLocation.fromNamespaceAndPath(JEIAE2Compact.MODID, "jei");
     }
 
     @Override
@@ -42,19 +42,4 @@ public void onRuntimeAvailable(@NotNull IJeiRuntime runtime) {
     public static IJeiRuntime getJeiRuntime() {
         return jeiRuntime;
     }
-
-    @Override
-public void registerCategories(IRecipeCategoryRegistration registration) {
-    registration.addRecipeCategories(new NetworkStatusCategory(
-        registration.getJeiHelpers().getGuiHelper()
-    ));
-}
-
-@Override
-public void registerRecipes(IRecipeRegistration registration) {
-    registration.addRecipes(
-        NetworkStatusRecipe.TYPE,
-        Collections.singletonList(new NetworkStatusRecipe())
-    );
-}
 }

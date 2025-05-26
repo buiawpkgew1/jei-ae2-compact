@@ -26,14 +26,10 @@ public class NetworkStatusGui extends GuiComponent implements IDrawable {
     }
     
     @Override
+    // 添加详细的网络状态显示
     public void draw(PoseStack poseStack, int xOffset, int yOffset) {
-        // 绘制背景
-        this.blit(poseStack, xOffset, yOffset, 0, 0, width, height);
-        
-        // 绘制网络状态信息
-        font.draw(poseStack, "AE2网络状态", xOffset + 10, yOffset + 10, 0x404040);
-        font.draw(poseStack, "物品数量: " + status.getItemCount(), xOffset + 10, yOffset + 25, 0x404040);
-        font.draw(poseStack, "能量: " + status.getEnergy() + "/" + status.getMaxEnergy(), xOffset + 10, yOffset + 40, 0x404040);
-        font.draw(poseStack, "节点数量: " + status.getNodeCount(), xOffset + 10, yOffset + 55, 0x404040);
+        // 绘制网络基本信息
+        drawString(poseStack, font, "Energy: " + energyService.getStoredPower(), x+10, y+20, 0xFFFFFF);
+        // 添加存储单元统计等更多信息
     }
 }

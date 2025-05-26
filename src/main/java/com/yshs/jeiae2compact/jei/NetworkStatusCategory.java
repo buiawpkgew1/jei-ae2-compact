@@ -44,13 +44,7 @@ public class NetworkStatusCategory implements IRecipeCategory<NetworkStatusRecip
     public void setRecipe(IRecipeLayoutBuilder builder, NetworkStatusRecipe recipe, IFocusGroup focuses) {
         builder.addSlot(RecipeIngredientRole.INPUT, 10, 10)
                .addTooltipCallback((recipeSlotView, tooltip) -> {
-                   tooltip.add(Component.translatable("jeiae2compact.tooltip.network_status"));
-                   tooltip.addAll(recipe.getTooltips());
+                   tooltip.add(Component.literal("点击查看详情"));
                });
-        
-        // 添加网络状态显示区域
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 50, 10)
-               .setCustomRenderer(NetworkStatusRenderer.class)
-               .addIngredient(NetworkStatusIngredient.TYPE, recipe.getStatus());
     }
 }
