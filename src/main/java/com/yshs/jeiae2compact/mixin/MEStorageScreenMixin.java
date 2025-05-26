@@ -76,8 +76,8 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
      */
     @Inject(method = "mouseClicked", at = @At("RETURN"), cancellable = true)
     private void onMouseClickedRequestItem(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        // 检查是否是右键点击
-        if (button == 1) { // 1 corresponds to right mouse button
+        // 检查是否是 Shift + 右键点击
+        if (button == 1 && hasShiftDown()) { // 1 corresponds to right mouse button
             IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
             ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
             if (itemStack == null || itemStack.isEmpty()) {
