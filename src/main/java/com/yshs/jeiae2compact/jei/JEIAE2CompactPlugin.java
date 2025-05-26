@@ -39,4 +39,9 @@ public class JEIAE2CompactPlugin implements IModPlugin {
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         registration.addRecipeTransferHandler(new RecipeTransferHandler());
     }
+
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registration) {
+        registration.addRecipeCategories(new NetworkMonitorGui());
+    }
 }
