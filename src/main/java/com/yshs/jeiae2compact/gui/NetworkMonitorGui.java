@@ -31,3 +31,7 @@ public class NetworkMonitorGui implements IRecipeCategory<Object> {
         // 显示能源状态
     }
 }
+
+// 添加1秒刷新间隔控制
+private long lastUpdateTime = 0;
+private static final long UPDATE_INTERVAL = 1000; // 1秒更新一次

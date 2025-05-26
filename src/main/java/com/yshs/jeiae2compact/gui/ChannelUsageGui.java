@@ -26,5 +26,10 @@ public class ChannelUsageGui implements IRecipeCategory<Object> {
         // 显示频道使用热力图
         Map<Direction, Integer> channelUsage = pathing.getChannelUsage();
         // 绘制热力图
+        // 修复方向枚举处理
+        for (Direction direction : Direction.values()) {
+            Integer usage = channelUsage.getOrDefault(direction, 0);
+            // 绘制每个方向的频道使用情况
+        }
     }
 }

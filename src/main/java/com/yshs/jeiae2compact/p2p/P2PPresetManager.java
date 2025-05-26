@@ -9,4 +9,9 @@ public class P2PPresetManager {
         // 加载P2P配置预设
         return new P2PConfig();
     }
+    
+    // 添加预设文件存在性检查
+    public static boolean presetExists(String name) {
+        return new File(getPresetPath(name)).exists();
+    }
 }
