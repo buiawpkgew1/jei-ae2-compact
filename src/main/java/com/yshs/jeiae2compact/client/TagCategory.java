@@ -7,7 +7,6 @@ import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import com.yshs.jeiae2compact.JEIAE2Compact;
-import java.util.List;
 
 public class TagCategory implements IRecipeCategory<TagRecipe> {
     public static final RecipeType<TagRecipe> TYPE = RecipeType.create(JEIAE2Compact.MODID, "tags", TagRecipe.class);
@@ -39,12 +38,5 @@ public class TagCategory implements IRecipeCategory<TagRecipe> {
     @Override
     public IDrawable getIcon() {
         return icon;
-    }
-
-    @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, TagRecipe recipe, IFocusGroup focuses) {
-        // 设置物品槽位
-        builder.addSlot(RecipeIngredientRole.INPUT, 20, 20)
-            .addItemStacks(recipe.getItems());
     }
 } 
