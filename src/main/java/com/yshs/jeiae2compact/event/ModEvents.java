@@ -34,13 +34,13 @@ public class ModEvents {
             ItemStack item = event.getItemStack();
             
             // 右键点击时切换收藏状态
-            if (event.getPlayer().isShiftKeyDown()) {
+            if (event.getEntity().isShiftKeyDown()) {
                 if (FavoriteUtil.isFavorite(item)) {
                     FavoriteUtil.removeFavorite(item);
-                    event.getPlayer().displayClientMessage(Component.literal("已取消收藏"), true);
+                    event.getEntity().displayClientMessage(Component.literal("已取消收藏"), true);
                 } else {
                     FavoriteUtil.addFavorite(item);
-                    event.getPlayer().displayClientMessage(Component.literal("已添加到收藏"), true);
+                    event.getEntity().displayClientMessage(Component.literal("已添加到收藏"), true);
                 }
                 event.setCanceled(true);
             }
