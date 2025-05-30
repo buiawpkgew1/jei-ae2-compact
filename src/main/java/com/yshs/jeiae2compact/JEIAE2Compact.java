@@ -1,12 +1,10 @@
 package com.yshs.jeiae2compact;
 
+import com.yshs.jeiae2compact.config.ModConfigManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.config.ModConfigEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 /**
  * 主类
@@ -24,25 +22,9 @@ public class JEIAE2Compact {
         MinecraftForge.EVENT_BUS.register(this);
         
         // 获取Mod事件总线
-        var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         
         // 注册配置
-        modEventBus.addListener(this::setup);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, "jeiae2compact-common.toml");
-    }
-    
-    private void setup(final FMLCommonSetupEvent event) {
-        // 在Mod初始化时注册配置事件监听器
-        var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::onConfigLoad);
-        modEventBus.addListener(this::onConfigReload);
-    }
-    
-    private void onConfigLoad(final ModConfigEvent.Loading event) {
-        // 配置加载时的处理
-    }
-    
-    private void onConfigReload(final ModConfigEvent.Reloading event) {
-        // 配置重载时的处理
+        ModConfigManager.register(modEventBus);
     }
 }
