@@ -43,39 +43,27 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
      */
     @Inject(method = "mouseClicked", at = @At("RETURN"))
     private void onMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
+        // 检查是否是中键点击
         if (Minecraft.getInstance().options.keyPickItem.matchesMouse(button)) {
+
+            // 获取JEI的运行时
             IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            // 得到书签覆盖层下面的物品
             ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
             if (itemStack == null) {
                 return;
             }
-            
-            // 检查材料是否足够
+            // 得到目标物品的AEKey
             AEItemKey targetKey = AEItemKey.of(itemStack);
-            long missingAmount = itemStack.getCount() - menu.getClientRepo().get(targetKey)
-                    .map(GridInventoryEntry::getStoredAmount)
-                    .orElse(0L);
-                    
-            // 如果材料不足，自动请求补充
-            if (missingAmount > 0) {
-                menu.getPlayerInventory().items.stream()
-                    .filter(stack -> !stack.isEmpty())
-                    .filter(stack -> AEItemKey.of(stack).equals(targetKey))
-                    .findFirst()
-                    .ifPresent(stack -> {
-                        // 请求补充缺少的数量
-                        menu.sendClientAction("fill_item", itemStack);
-                        Minecraft.getInstance().player.displayClientMessage(
-                            Component.literal("自动请求补充 " + missingAmount + " 个 " + itemStack.getDisplayName().getString()), 
-                            true);
-                    });
-            }
-            
-            // 原有自动合成逻辑
+            // 遍历AE终端中的所有条目
             repo.getAllEntries().stream()
+                    // 过滤掉无法自动合成的条目
                     .filter(GridInventoryEntry::isCraftable)
+                    // 过滤掉空值
                     .filter(entry -> entry.getWhat() != null)
+                    // 找到目标条目
                     .filter(entry -> entry.getWhat().equals(targetKey))
+                    // 打开自动合成菜单
                     .forEach(entry -> {
                         long serial = entry.getSerial();
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
