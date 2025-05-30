@@ -19,19 +19,19 @@ public class SearchUtil {
             return items;
         }
 
-        searchText = searchText.toLowerCase();
+        final String finalSearchText = searchText.toLowerCase();
         List<ItemStack> results = new ArrayList<>();
         Predicate<ItemStack> searchPredicate;
 
         if (Config.ENABLE_FUZZY_SEARCH.get()) {
             searchPredicate = item -> {
                 String itemName = item.getDisplayName().getString().toLowerCase();
-                return fuzzyMatch(itemName, searchText);
+                return fuzzyMatch(itemName, finalSearchText);
             };
         } else {
             searchPredicate = item -> {
                 String itemName = item.getDisplayName().getString().toLowerCase();
-                return itemName.contains(searchText);
+                return itemName.contains(finalSearchText);
             };
         }
 
