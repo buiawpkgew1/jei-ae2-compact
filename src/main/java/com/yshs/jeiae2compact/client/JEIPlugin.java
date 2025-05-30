@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.core.BlockPos;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellHandler;
 import appeng.api.stacks.AEItemKey;
@@ -38,14 +39,20 @@ public class JEIPlugin implements IModPlugin {
         List<CellRecipe> recipes = new ArrayList<>();
         
         // 获取所有存储单元
-        for (BlockEntity blockEntity : level.getBlockEntities()) {
-            if (blockEntity instanceof appeng.blockentity.storage.DriveBlockEntity drive) {
-                for (int i = 0; i < 10; i++) { // 假设最多10个存储单元
-                    ItemStack cell = drive.getInternalInventory().getStackInSlot(i);
-                    if (AE2ItemUtil.isStorageCell(cell)) {
-                        List<ItemStack> items = AE2ItemUtil.getCellItems(cell);
-                        if (!items.isEmpty()) {
-                            recipes.add(new CellRecipe(cell, items));
+        for (int x = -16; x < 16; x++) {
+            for (int y = -16; y < 16; y++) {
+                for (int z = -16; z < 16; z++) {
+                    BlockPos pos = new BlockPos(x, y, z);
+                    BlockEntity blockEntity = level.getBlockEntity(pos);
+                    if (blockEntity instanceof appeng.blockentity.storage.DriveBlockEntity drive) {
+                        for (int i = 0; i < 10; i++) { // 假设最多10个存储单元
+                            ItemStack cell = drive.getInternalInventory().getStackInSlot(i);
+                            if (AE2ItemUtil.isStorageCell(cell)) {
+                                List<ItemStack> items = AE2ItemUtil.getCellItems(cell);
+                                if (!items.isEmpty()) {
+                                    recipes.add(new CellRecipe(cell, items));
+                                }
+                            }
                         }
                     }
                 }
