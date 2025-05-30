@@ -18,13 +18,15 @@ public class JEIAE2Compact {
      */
     public static final String MODID = "jeiae2compact";
 
-    @SuppressWarnings("MissingJavadoc")
-    public JEIAE2Compact(IEventBus modEventBus) {
-        // 注册到MinecraftForge事件总线，确保客户端事件能够被正确处理
+    /**
+     * 构造函数
+     */
+    public JEIAE2Compact() {
+        // 注册到MinecraftForge事件总线
         MinecraftForge.EVENT_BUS.register(this);
         
         // 注册配置
-        ModConfigManager.register(modEventBus);
+        ModConfigManager.register(MinecraftForge.EVENT_BUS);
     }
 
     @SubscribeEvent
