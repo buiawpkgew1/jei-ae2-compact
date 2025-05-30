@@ -12,6 +12,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import appeng.api.storage.StorageCells;
+import appeng.api.storage.cells.ICellHandler;
+import appeng.api.storage.cells.ICellInventory;
+import appeng.api.stacks.AEItemKey;
+import appeng.api.stacks.AEKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,10 +39,10 @@ public class JEIPlugin implements IModPlugin {
         List<CellRecipe> recipes = new ArrayList<>();
         
         // 获取所有存储单元
-        for (BlockEntity blockEntity : level.blockEntityList) {
+        for (BlockEntity blockEntity : level.getBlockEntityTickers()) {
             if (blockEntity instanceof appeng.blockentity.storage.DriveBlockEntity drive) {
-                for (int i = 0; i < drive.getCellCount(); i++) {
-                    ItemStack cell = drive.getCell(i);
+                for (int i = 0; i < 10; i++) { // 假设最多10个存储单元
+                    ItemStack cell = drive.getInternalInventory().getStackInSlot(i);
                     if (AE2ItemUtil.isStorageCell(cell)) {
                         List<ItemStack> items = AE2ItemUtil.getCellItems(cell);
                         if (!items.isEmpty()) {
