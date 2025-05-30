@@ -18,6 +18,12 @@ import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import java.util.ArrayList;
 import java.util.List;
+import appeng.api.networking.IGridNode;
+import appeng.api.networking.IGrid;
+import appeng.api.storage.IMEMonitor;
+import appeng.api.storage.StorageChannels;
+import net.minecraft.world.entity.player.Player;
+import appeng.api.stacks.KeyCounter;
 
 @JeiPlugin
 public class JEIPlugin implements IModPlugin {
@@ -29,6 +35,7 @@ public class JEIPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new CellCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new NetworkCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -60,5 +67,32 @@ public class JEIPlugin implements IModPlugin {
         }
 
         registration.addRecipes(CellCategory.TYPE, recipes);
+
+        Player player = Minecraft.getInstance().player;
+        if (player == null) return;
+
+        // 获取玩家所在的 AE2 网络
+        IGridNode node = appeng.api.util.AECableHelpers.getNodeFromEntity(player);
+        if (node == null) return;
+
+        IGrid grid = node.getGrid();
+        if (grid == null) return;
+
+        // 获取网络中的物品
+        IMEMonitor<AEItemKey> monitor = grid.getStorageService().getInventory(StorageChannels.items());
+        if (monitor == null) return;
+
+        // 获取所有物品
+        KeyCounter<AEItemKey> items = new KeyCounter<>();
+        monitor.getAvailableStacks(items);
+
+        // 转换为 ItemStack 列表
+        List<ItemStack> networkItems = new ArrayList<>();
+        for (AEItemKey key : items.keySet()) {
+            networkItems.add(key.toStack());
+        }
+
+        // 注册到 JEI
+        registration.addRecipes(NetworkCategory.TYPE, networkItems);
     }
 } 
