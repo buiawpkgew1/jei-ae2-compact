@@ -38,7 +38,7 @@ public class JEIPlugin implements IModPlugin {
         List<CellRecipe> recipes = new ArrayList<>();
         
         // 获取所有存储单元
-        for (BlockEntity blockEntity : level.getBlockEntityTickers()) {
+        for (BlockEntity blockEntity : level.getBlockEntities()) {
             if (blockEntity instanceof appeng.blockentity.storage.DriveBlockEntity drive) {
                 for (int i = 0; i < 10; i++) { // 假设最多10个存储单元
                     ItemStack cell = drive.getInternalInventory().getStackInSlot(i);
