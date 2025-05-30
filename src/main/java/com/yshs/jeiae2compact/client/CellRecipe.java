@@ -2,19 +2,18 @@ package com.yshs.jeiae2compact.client;
 
 import net.minecraft.world.item.ItemStack;
 import java.util.List;
-import java.util.Set;
 
-public class TagRecipe {
-    private final Set<String> tags;
+public class CellRecipe {
+    private final ItemStack cell;
     private final List<ItemStack> items;
 
-    public TagRecipe(Set<String> tags, List<ItemStack> items) {
-        this.tags = tags;
+    public CellRecipe(ItemStack cell, List<ItemStack> items) {
+        this.cell = cell;
         this.items = items;
     }
 
-    public Set<String> getTags() {
-        return tags;
+    public ItemStack getCell() {
+        return cell;
     }
 
     public List<ItemStack> getItems() {
