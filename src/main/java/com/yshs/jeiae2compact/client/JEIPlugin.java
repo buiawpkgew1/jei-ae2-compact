@@ -10,6 +10,8 @@ import com.yshs.jeiae2compact.util.AE2ItemUtil;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import appeng.api.storage.StorageCells;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,17 +35,19 @@ public class JEIPlugin implements IModPlugin {
         List<CellRecipe> recipes = new ArrayList<>();
         
         // 获取所有存储单元
-        level.getEntities().forEach(entity -> {
-            if (entity instanceof appeng.blockentity.networking.StorageBusBlockEntity storageBus) {
-                ItemStack cell = storageBus.getCell();
-                if (AE2ItemUtil.isStorageCell(cell)) {
-                    List<ItemStack> items = AE2ItemUtil.getCellItems(cell);
-                    if (!items.isEmpty()) {
-                        recipes.add(new CellRecipe(cell, items));
+        for (BlockEntity blockEntity : level.blockEntityList) {
+            if (blockEntity instanceof appeng.blockentity.storage.DriveBlockEntity drive) {
+                for (int i = 0; i < drive.getCellCount(); i++) {
+                    ItemStack cell = drive.getCell(i);
+                    if (AE2ItemUtil.isStorageCell(cell)) {
+                        List<ItemStack> items = AE2ItemUtil.getCellItems(cell);
+                        if (!items.isEmpty()) {
+                            recipes.add(new CellRecipe(cell, items));
+                        }
                     }
                 }
             }
-        });
+        }
 
         registration.addRecipes(CellCategory.TYPE, recipes);
     }
