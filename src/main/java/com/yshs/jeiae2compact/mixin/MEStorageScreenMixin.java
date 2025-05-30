@@ -14,6 +14,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.client.gui.screens.Screen;
+import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,6 +32,9 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
     @Final
     @Shadow
     protected Repo repo;
+
+    @Shadow
+    protected abstract void setSearchString(String search);
 
     public MEStorageScreenMixin(T menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);
@@ -68,5 +73,47 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                         menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
                     });
         }
+        // 检查是否是Shift+右键点击
+        else if (button == 1 && Screen.hasShiftDown()) {
+            // 获取鼠标下的物品
+            GridInventoryEntry entry = getEntryAtPosition(mouseX, mouseY);
+            if (entry != null && entry.isCraftable()) {
+                // 自动补充到64个
+                long serial = entry.getSerial();
+                menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
+                cir.setReturnValue(true);
+            }
+        }
+    }
+
+    /**
+     * 注入到keyPressed方法，处理快捷键
+     */
+    @Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
+    private void onKeyPressed(int keyCode, int scanCode, int modifiers, CallbackInfoReturnable<Boolean> cir) {
+        // 当按下Ctrl+F时，自动聚焦到搜索框
+        if (keyCode == GLFW.GLFW_KEY_F && (modifiers & GLFW.GLFW_MOD_CONTROL) != 0) {
+            setSearchString("");
+            cir.setReturnValue(true);
+        }
+    }
+
+    /**
+     * 获取指定位置的物品条目
+     */
+    private GridInventoryEntry getEntryAtPosition(double mouseX, double mouseY) {
+        for (GridInventoryEntry entry : repo.getAllEntries()) {
+            if (isMouseOver(mouseX, mouseY, entry.getX(), entry.getY(), 16, 16)) {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 检查鼠标是否在指定区域内
+     */
+    private boolean isMouseOver(double mouseX, double mouseY, int x, int y, int width, int height) {
+        return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
     }
 } 
