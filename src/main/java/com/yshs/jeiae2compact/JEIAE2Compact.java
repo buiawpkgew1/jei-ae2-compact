@@ -23,11 +23,13 @@ public class JEIAE2Compact {
         MinecraftForge.EVENT_BUS.register(this);
         
         // 注册配置
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, "jeiae2compact-common.toml");
+        var modContext = ModLoadingContext.get();
+        modContext.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, "jeiae2compact-common.toml");
         
         // 注册配置事件监听器
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onConfigLoad);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onConfigReload);
+        var modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::onConfigLoad);
+        modEventBus.addListener(this::onConfigReload);
     }
     
     private void onConfigLoad(final ModConfigEvent.Loading event) {

@@ -2,6 +2,8 @@ package com.yshs.jeiae2compact.util;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import java.util.*;
 
 public class FavoriteUtil {
@@ -62,7 +64,8 @@ public class FavoriteUtil {
     }
 
     private static String getItemId(ItemStack item) {
-        return item.getItem().getRegistryName().toString() + ":" + item.getDamageValue();
+        ResourceLocation key = ForgeRegistries.ITEMS.getKey(item.getItem());
+        return key.toString() + ":" + item.getDamageValue();
     }
 
     private static void saveFavorites() {

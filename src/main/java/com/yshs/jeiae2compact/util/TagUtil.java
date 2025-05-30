@@ -2,6 +2,8 @@ package com.yshs.jeiae2compact.util;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.ForgeRegistries;
 import java.util.*;
 
 public class TagUtil {
@@ -75,14 +77,19 @@ public class TagUtil {
     }
 
     private static String getItemId(ItemStack item) {
-        return item.getItem().getRegistryName().toString() + ":" + item.getDamageValue();
+        ResourceLocation key = ForgeRegistries.ITEMS.getKey(item.getItem());
+        return key.toString() + ":" + item.getDamageValue();
     }
 
     private static void saveTagsToNBT(ItemStack item) {
         CompoundTag nbt = item.getOrCreateTag();
         CompoundTag tagCompound = new CompoundTag();
         Set<String> tags = getTags(item);
-        tagCompound.putStringArray("tags", tags.toArray(new String[0]));
+        List<String> tagList = new ArrayList<>(tags);
+        tagCompound.put("tags", new net.minecraft.nbt.ListTag());
+        for (String tag : tagList) {
+            tagCompound.getList("tags", 8).add(net.minecraft.nbt.StringTag.valueOf(tag));
+        }
         nbt.put(TAG_KEY, tagCompound);
     }
 
@@ -90,9 +97,15 @@ public class TagUtil {
         CompoundTag nbt = item.getTag();
         if (nbt != null && nbt.contains(TAG_KEY)) {
             CompoundTag tagCompound = nbt.getCompound(TAG_KEY);
-            String[] tags = tagCompound.getStringArray("tags");
-            String itemId = getItemId(item);
-            itemTags.put(itemId, new HashSet<>(Arrays.asList(tags)));
+            if (tagCompound.contains("tags", 9)) { // 9 是 ListTag 的类型
+                net.minecraft.nbt.ListTag tagList = tagCompound.getList("tags", 8); // 8 是 String 的类型
+                Set<String> tags = new HashSet<>();
+                for (int i = 0; i < tagList.size(); i++) {
+                    tags.add(tagList.getString(i));
+                }
+                String itemId = getItemId(item);
+                itemTags.put(itemId, tags);
+            }
         }
     }
 } 
