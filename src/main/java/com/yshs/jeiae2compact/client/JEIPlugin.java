@@ -15,6 +15,8 @@ import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import appeng.api.stacks.KeyCounter;
 import appeng.api.storage.cells.ICellHandler;
+import appeng.api.networking.IGridNodeHost;
+import appeng.api.networking.IGridNodeable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +38,10 @@ public class JEIPlugin implements IModPlugin {
         if (player == null) return;
 
         // 获取玩家所在的 AE2 网络
-        IGridNode node = appeng.api.util.AECableHelpers.getNodeFromEntity(player);
+        IGridNode node = null;
+        if (player instanceof IGridNodeable) {
+            node = ((IGridNodeable) player).getMainNode();
+        }
         if (node == null) return;
 
         IGrid grid = node.getGrid();
@@ -47,13 +52,15 @@ public class JEIPlugin implements IModPlugin {
         if (storage == null) return;
 
         // 获取所有物品
-        KeyCounter<AEItemKey> items = new KeyCounter<>();
+        KeyCounter items = new KeyCounter();
         storage.getAvailableStacks(items);
 
         // 转换为 ItemStack 列表
         List<ItemStack> networkItems = new ArrayList<>();
-        for (AEItemKey key : items.keySet()) {
-            networkItems.add(key.toStack());
+        for (AEKey key : items.keySet()) {
+            if (key instanceof AEItemKey itemKey) {
+                networkItems.add(itemKey.toStack());
+            }
         }
 
         // 注册到 JEI
