@@ -7,6 +7,7 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 
 @Mod.EventBusSubscriber(modid = JEIAE2Compact.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModConfigManager {
@@ -14,11 +15,11 @@ public class ModConfigManager {
 
     public static void register(IEventBus modEventBus) {
         // 注册配置
-        modEventBus.addListener(ModConfigManager::registerConfig);
-    }
-
-    private static void registerConfig(final ModConfigEvent.Registering event) {
-        event.registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, CONFIG_FILE);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, CONFIG_FILE);
+        
+        // 注册配置事件监听器
+        modEventBus.addListener(ModConfigManager::onConfigLoad);
+        modEventBus.addListener(ModConfigManager::onConfigReload);
     }
 
     @SubscribeEvent
