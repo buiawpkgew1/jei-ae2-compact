@@ -8,7 +8,7 @@ import appeng.client.gui.style.ScreenStyle;
 import appeng.helpers.InventoryAction;
 import appeng.menu.me.common.GridInventoryEntry;
 import appeng.menu.me.common.MEStorageMenu;
-import com.yshs.jeiae2compact.jei.JEIAE2CompactPlugin;
+import com.yshs.jeiae2compact.client.JEIPlugin;
 import mezz.jei.api.runtime.IJeiRuntime;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -23,8 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * mixin MEStorageScreen
- *
- * @param <T> idk
  */
 @Mixin(value = MEStorageScreen.class)
 public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBaseScreen<T> {
@@ -33,7 +31,6 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
     @Shadow
     protected Repo repo;
 
-    @SuppressWarnings("MissingJavadoc")
     public MEStorageScreenMixin(T menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);
     }
@@ -45,14 +42,16 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
     private void onMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
         // 检查是否是中键点击
         if (Minecraft.getInstance().options.keyPickItem.matchesMouse(button)) {
-
             // 获取JEI的运行时
-            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
+            IJeiRuntime jeiRuntime = JEIPlugin.getJeiRuntime();
+            if (jeiRuntime == null) return;
+
             // 得到书签覆盖层下面的物品
             ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
             if (itemStack == null) {
                 return;
             }
+
             // 得到目标物品的AEKey
             AEItemKey targetKey = AEItemKey.of(itemStack);
             // 遍历AE终端中的所有条目
@@ -70,4 +69,4 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
                     });
         }
     }
-}
+} 

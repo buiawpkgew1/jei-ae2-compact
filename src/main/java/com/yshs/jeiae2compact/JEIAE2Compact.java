@@ -1,12 +1,8 @@
 package com.yshs.jeiae2compact;
 
 import com.yshs.jeiae2compact.config.ModConfigManager;
-import com.yshs.jeiae2compact.command.TagCommand;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
  * 主类
@@ -27,10 +23,5 @@ public class JEIAE2Compact {
         
         // 注册配置
         ModConfigManager.register(MinecraftForge.EVENT_BUS);
-    }
-
-    @SubscribeEvent
-    public void onRegisterCommands(RegisterCommandsEvent event) {
-        TagCommand.register(event.getDispatcher());
     }
 }
