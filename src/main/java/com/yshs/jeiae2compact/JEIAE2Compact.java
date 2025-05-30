@@ -4,7 +4,8 @@ import com.yshs.jeiae2compact.config.ModConfigManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.javafmlmod.FMLModContainer;
+import net.minecraftforge.fml.ModLoadingContext;
 
 /**
  * 主类
@@ -22,7 +23,7 @@ public class JEIAE2Compact {
         MinecraftForge.EVENT_BUS.register(this);
         
         // 获取Mod事件总线
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        IEventBus modEventBus = ((FMLModContainer) ModLoadingContext.get().getActiveContainer()).getEventBus();
         
         // 注册配置
         ModConfigManager.register(modEventBus);
