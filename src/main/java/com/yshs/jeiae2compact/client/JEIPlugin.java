@@ -10,7 +10,7 @@ import com.yshs.jeiae2compact.JEIAE2Compact;
 public class JEIPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(JEIAE2Compact.MODID, "jei_plugin");
+        return ResourceLocation.tryParse(JEIAE2Compact.MODID + ":jei_plugin");
     }
 
     @Override

@@ -14,7 +14,7 @@ public class AE2ItemUtil {
      * 检查物品是否是 AE2 存储单元
      */
     public static boolean isStorageCell(ItemStack stack) {
-        return StorageCells.getCellHandler(stack) != null;
+        return StorageCells.getCellInventory(stack, null) != null;
     }
     
     /**
@@ -22,10 +22,10 @@ public class AE2ItemUtil {
      */
     public static List<ItemStack> getCellItems(ItemStack cell) {
         List<ItemStack> items = new ArrayList<>();
-        ICellHandler handler = StorageCells.getCellHandler(cell);
-        if (handler != null) {
-            handler.getCellInventory(cell, null).getAvailableStacks().forEach(key -> {
-                if (key instanceof AEItemKey itemKey) {
+        var inventory = StorageCells.getCellInventory(cell, null);
+        if (inventory != null) {
+            inventory.getAvailableStacks().forEach(key -> {
+                if (key.getKey() instanceof AEItemKey itemKey) {
                     items.add(itemKey.toStack());
                 }
             });
