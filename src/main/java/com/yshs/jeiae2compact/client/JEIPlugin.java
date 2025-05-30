@@ -13,7 +13,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import appeng.api.storage.StorageCells;
 import appeng.api.storage.cells.ICellHandler;
-import appeng.api.storage.cells.ICellInventory;
 import appeng.api.stacks.AEItemKey;
 import appeng.api.stacks.AEKey;
 import java.util.ArrayList;
