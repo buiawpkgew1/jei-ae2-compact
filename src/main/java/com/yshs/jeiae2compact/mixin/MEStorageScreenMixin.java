@@ -43,31 +43,38 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
      */
     @Inject(method = "mouseClicked", at = @At("RETURN"))
     private void onMouseClicked(double mouseX, double mouseY, int button, CallbackInfoReturnable<Boolean> cir) {
-        // 检查是否是中键点击
-        if (Minecraft.getInstance().options.keyPickItem.matchesMouse(button)) {
+        // 获取Minecraft实例和JEI运行时
+        Minecraft minecraft = Minecraft.getInstance();
+        IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
 
-            // 获取JEI的运行时
-            IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
-            // 得到书签覆盖层下面的物品
-            ItemStack itemStack = jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse();
-            if (itemStack == null) {
-                return;
-            }
-            // 得到目标物品的AEKey
-            AEItemKey targetKey = AEItemKey.of(itemStack);
-            // 遍历AE终端中的所有条目
-            repo.getAllEntries().stream()
-                    // 过滤掉无法自动合成的条目
-                    .filter(GridInventoryEntry::isCraftable)
-                    // 过滤掉空值
-                    .filter(entry -> entry.getWhat() != null)
-                    // 找到目标条目
-                    .filter(entry -> entry.getWhat().equals(targetKey))
-                    // 打开自动合成菜单
-                    .forEach(entry -> {
-                        long serial = entry.getSerial();
-                        menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
-                    });
+        // 检查是否是中键点击
+        if (!minecraft.options.keyPickItem.matchesMouse(button)) {
+            return;
         }
+
+        // 获取书签覆盖层下的物品
+        ItemStack itemStack = jeiRuntime != null ? jeiRuntime.getBookmarkOverlay().getItemStackUnderMouse() : null;
+        if (itemStack == null || jeiRuntime == null) {
+            return;
+        }
+
+        // 得到目标物品的AEKey
+        AEItemKey targetKey = AEItemKey.of(itemStack);
+        if (targetKey == null) {
+            return;
+        }
+
+        // 遍历AE终端中的所有条目并打开自动合成菜单
+        repo.getAllEntries().stream()
+                .filter(GridInventoryEntry::isCraftable)
+                .filter(entry -> entry.getWhat() != null)
+                .filter(entry -> entry.getWhat().equals(targetKey))
+                .forEach(entry -> {
+                    long serial = entry.getSerial();
+                    menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
+
+                    // 合成完成后，再模拟一次拾取/放置动作，尝试填充到合成栏
+                    menu.handleInteraction(serial, InventoryAction.PICKUP_OR_SET_DOWN);
+                });
     }
 }
