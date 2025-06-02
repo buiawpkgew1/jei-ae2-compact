@@ -15,6 +15,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Button;
+import com.mojang.blaze3d.vertex.PoseStack;
 import org.lwjgl.glfw.GLFW;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -35,6 +38,11 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
 
     @Shadow
     protected abstract void setSearchString(String search);
+
+    private EditBox amountBox;
+    private Button confirmButton;
+    private GridInventoryEntry selectedEntry;
+    private boolean showingAmountInput = false;
 
     public MEStorageScreenMixin(T menu, Inventory playerInventory, Component title, ScreenStyle style) {
         super(menu, playerInventory, title, style);
@@ -78,9 +86,8 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
             // 获取鼠标下的物品
             GridInventoryEntry entry = getEntryAtPosition(mouseX, mouseY);
             if (entry != null && entry.isCraftable()) {
-                // 自动补充到64个
-                long serial = entry.getSerial();
-                menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
+                selectedEntry = entry;
+                showAmountInput();
                 cir.setReturnValue(true);
             }
         }
@@ -96,6 +103,72 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
             setSearchString("");
             cir.setReturnValue(true);
         }
+    }
+
+    /**
+     * 注入到render方法，渲染数量输入框
+     */
+    @Inject(method = "render", at = @At("RETURN"))
+    private void onRender(PoseStack poseStack, int mouseX, int mouseY, float partialTicks, CallbackInfoReturnable<Boolean> cir) {
+        if (showingAmountInput && amountBox != null) {
+            amountBox.render(poseStack, mouseX, mouseY, partialTicks);
+            if (confirmButton != null) {
+                confirmButton.render(poseStack, mouseX, mouseY, partialTicks);
+            }
+        }
+    }
+
+    /**
+     * 显示数量输入框
+     */
+    private void showAmountInput() {
+        if (amountBox == null) {
+            amountBox = createAmountBox(); // 使用提取的方法
+        }
+
+        if (confirmButton == null) {
+            confirmButton = createConfirmButton(); // 使用提取的方法
+        }
+
+        showingAmountInput = true;
+        amountBox.setFocused(true);
+    }
+
+    /**
+     * 创建确认按钮
+     */
+    private Button createConfirmButton() {
+        return new Button(width / 2 - 50, height / 2 + 15, 100, 20,
+                Component.literal("确认"), button -> {
+                    try {
+                        int amount = Integer.parseInt(amountBox.getValue());
+                        if (amount > 0 && selectedEntry != null) {
+                            long serial = selectedEntry.getSerial();
+                            menu.handleInteraction(serial, InventoryAction.AUTO_CRAFT);
+                        }
+                    } catch (NumberFormatException ignored) {
+                    }
+                    hideAmountInput();
+                });
+    }
+
+    /**
+     * 创建数量输入框
+     */
+    private EditBox createAmountBox() {
+        EditBox box = new EditBox(font, width / 2 - 50, height / 2 - 10, 100, 20, Component.literal(""));
+        box.setValue("64");
+        box.setMaxLength(5);
+        box.setFilter(s -> s.matches("\\d*"));
+        return box;
+    }
+
+    /**
+     * 隐藏数量输入框
+     */
+    private void hideAmountInput() {
+        showingAmountInput = false;
+        selectedEntry = null;
     }
 
     /**
@@ -116,4 +189,4 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
     private boolean isMouseOver(double mouseX, double mouseY, int x, int y, int width, int height) {
         return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
     }
-} 
+}
