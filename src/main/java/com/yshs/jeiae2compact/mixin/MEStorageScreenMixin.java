@@ -49,17 +49,16 @@ public abstract class MEStorageScreenMixin<T extends MEStorageMenu> extends AEBa
             if (!isMiddleClick(button)) return;
 
             IJeiRuntime jeiRuntime = JEIAE2CompactPlugin.getJeiRuntime();
-            ItemStack itemStack = getItemUnderCursor(jeiRuntime);
+            if (jeiRuntime == null) return;
 
-            if (itemStack == null || itemStack.isEmpty()) {
-                showNoItemToast();
-                return;
-            }
+            InputHandler handler = new InputHandler(
+                    jeiRuntime,
+                    new CraftingService(repo, menu)
+            );
+            handler.handleMiddleClick();
 
-            AEItemKey targetKey = AEItemKey.of(itemStack);
-            findAndHandleCraftableEntry(targetKey);
         } catch (Exception e) {
-            LOGGER.error("中键点击处理过程中发生异常", e);
+            ModLogger.error("中键点击处理过程中发生异常", e);
         }
     }
 
