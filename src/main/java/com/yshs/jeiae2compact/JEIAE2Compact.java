@@ -1,6 +1,5 @@
 package com.yshs.jeiae2compact;
 
-import com.yshs.jeiae2compact.config.ModConfigManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 
@@ -14,14 +13,9 @@ public class JEIAE2Compact {
      */
     public static final String MODID = "jeiae2compact";
 
-    /**
-     * 构造函数
-     */
+    @SuppressWarnings("MissingJavadoc")
     public JEIAE2Compact() {
-        // 注册到MinecraftForge事件总线
+        // 注册到MinecraftForge事件总线，确保客户端事件能够被正确处理
         MinecraftForge.EVENT_BUS.register(this);
-        
-        // 注册配置
-        ModConfigManager.register(MinecraftForge.EVENT_BUS);
     }
 }
