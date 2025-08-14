@@ -29,7 +29,8 @@ jobs:
       id: get_version
       run: |
         TAG_NAME=${GITHUB_REF#refs/tags/}
-        echo "VERSION=${TAG_NAME#1.20.1-v}" >> $GITHUB_OUTPUT
+        VERSION=${TAG_NAME#1.20.1-v}
+        echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
