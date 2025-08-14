@@ -4,52 +4,26 @@ on:
   push:
     tags:
       - 'v*'
-      - '1.20.1-v*'
-      - '1.21.1-v*'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - tag_prefix: "1.20.1-v"
-            java_version: "17"
-            minecraft_version: "1.20.1"
-          - tag_prefix: "1.21.1-v"
-            java_version: "21"
-            minecraft_version: "1.21.1"
-          - tag_prefix: "v"
-            java_version: "17"
-            minecraft_version: "1.20.1"
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up JDK ${{ matrix.java_version }}
+    - name: Set up JDK 21
       uses: actions/setup-java@v4
       with:
-        java-version: ${{ matrix.java_version }}
+        java-version: '21'
         distribution: 'temurin'
 
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
 
-    - name: Modify gradle.properties for ${{ matrix.minecraft_version }}
-      if: startsWith(github.ref, 'refs/tags/') && !contains(github.ref, matrix.tag_prefix)
-      run: |
-        if [[ "${{ matrix.minecraft_version }}" == "1.21.1" ]]; then
-          sed -i 's/minecraft_version=1.20.1/minecraft_version=1.21.1/g' gradle.properties
-          sed -i 's/minecraft_version_range=\[1.20.1,1.21)/minecraft_version_range=\[1.21.1,1.22)/g' gradle.properties
-          sed -i 's/forge_version=47.4.0/forge_version=52.0.0/g' gradle.properties
-          sed -i 's/forge_version_range=\[47,)/forge_version_range=\[52,)/g' gradle.properties
-          sed -i 's/loader_version_range=\[47,)/loader_version_range=\[52,)/g' gradle.properties
-          sed -i 's/mapping_version=1.20.1/mapping_version=1.21.1/g' gradle.properties
-          sed -i 's/toolchain.languageVersion = JavaLanguageVersion.of(17)/toolchain.languageVersion = JavaLanguageVersion.of(21)/g' build.gradle
-          sed -i 's/jei_version=15.20.0.106/jei_version=1.21.1.107/g' gradle.properties
-          sed -i 's/ae2_version=15.3.4/ae2_version=1.21.1/g' gradle.properties
-        fi
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
     - name: Build with Gradle
       run: ./gradlew build
@@ -58,26 +32,14 @@ jobs:
       id: get_version
       run: |
         TAG_NAME=${GITHUB_REF#refs/tags/}
-        if [[ "${TAG_NAME}" == "1.20.1-"* ]]; then
-          VERSION=${TAG_NAME#1.20.1-v}
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "RELEASE_NAME=1.20.1-v${VERSION}" >> $GITHUB_OUTPUT
-        elif [[ "${TAG_NAME}" == "1.21.1-"* ]]; then
-          VERSION=${TAG_NAME#1.21.1-v}
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "RELEASE_NAME=1.21.1-v${VERSION}" >> $GITHUB_OUTPUT
-        else
-          VERSION=${TAG_NAME#v}
-          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
-          echo "RELEASE_NAME=v${VERSION}" >> $GITHUB_OUTPUT
-        fi
+        echo "VERSION=${TAG_NAME#v}" >> $GITHUB_OUTPUT
 
     - name: Create Release
       uses: softprops/action-gh-release@v2
       with:
         files: build/libs/*
         tag_name: ${{ github.ref }}
-        name: Release ${{ steps.get_version.outputs.RELEASE_NAME }}
+        name: Release ${{ steps.get_version.outputs.VERSION }}
         draft: false
         prerelease: false
         generate_release_notes: true
