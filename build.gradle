@@ -30,24 +30,25 @@ java {
 
 neoForge {
     version = project.neo_version
+    
     runs {
-        configureEach {
+        client {
             workingDirectory = project.file('run')
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-            modSource project.sourceSets.main
+            modSource = project.sourceSets.main
         }
-
-        client {
-            clientOnly = true
-        }
-
+        
         server {
+            workingDirectory = project.file('run')
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            modSource = project.sourceSets.main
             args '--nogui'
         }
-
+        
         data {
             workingDirectory = project.file('run-data')
             args '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            modSource = project.sourceSets.main
         }
     }
 }
